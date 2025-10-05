@@ -3,6 +3,8 @@
 import { SnippetsTable } from "@/drizzle/schema";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const SnippetCard = ({
   snippet,
@@ -26,10 +28,19 @@ const SnippetCard = ({
       </h2>
       <p className="text-gray-700 mb-4">{snippet.description}</p>
 
-      <div className="bg-gray-100 p-4 rounded-md">
-        <pre>
-          <code>{snippet.code}</code>
-        </pre>
+      <div className="rounded-md overflow-hidden">
+        <SyntaxHighlighter
+          language="javascript"
+          style={oneDark}
+          customStyle={{
+            padding: "1rem",
+            borderRadius: "0.5rem",
+            fontSize: "0.9rem",
+            lineHeight: "1.5",
+          }}
+          // eslint-disable-next-line react/no-children-prop
+          children={String(snippet.code)}
+        ></SyntaxHighlighter>
       </div>
     </div>
   );

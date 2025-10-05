@@ -23,10 +23,11 @@ export function AddSnippetForm() {
   const handleSubmit = async (formData: FormData) => {
     setIsLoading(true);
     try {
-      const result = await addSnippetAction(formData, code);
+      const result = await addSnippetAction(formData);
       if (result) {
         toast.error(result);
       } else {
+        toast.success("Snippet added");
         setIsOpen(false);
       }
     } catch (error) {
@@ -85,7 +86,26 @@ export function AddSnippetForm() {
           </div>
 
           <div>
+            <label className="block text-sm font-medium mb-1">Language</label>
+            <select
+              name="language"
+              className="w-full border rounded px-3 py-2 text-sm mb-2"
+              defaultValue="javascript"
+              disabled={isLoading}
+            >
+              <option value="javascript">JavaScript</option>
+              <option value="typescript">TypeScript</option>
+              <option value="python">Python</option>
+              <option value="json">JSON</option>
+              <option value="text">Plain Text</option>
+            </select>
+          </div>
+
+          <div>
             <label className="block text-sm font-medium mb-1">Code</label>
+
+            <input type="hidden" name="code" value={code} />
+
             <div className="border rounded overflow-hidden">
               <CodeMirror
                 value={code}
