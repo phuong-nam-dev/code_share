@@ -10,7 +10,7 @@ const SnippetCard = ({ snippet }) => {
           <code>{snippet.code}</code>
         </pre>
       </div>
-      <div className="mt-4">
+      {/* <div className="mt-4">
         {snippet.tags.map((tag) => (
           <span
             key={tag}
@@ -19,7 +19,7 @@ const SnippetCard = ({ snippet }) => {
             #{tag}
           </span>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
